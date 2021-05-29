@@ -10,6 +10,6 @@ public interface JobAdvertisementsDao extends JpaRepository<JobAdvertisement, In
 
 	List<JobAdvertisement> findByActiveTrue();
 	
-	List<JobAdvertisement> findByEmployer_EmployerId(int employerId);
+	List<JobAdvertisement> findByEmployer_Id(int employerId);
   
 }
