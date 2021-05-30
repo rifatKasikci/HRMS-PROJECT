@@ -15,4 +15,6 @@ public interface JobAdvertisementService {
 	DataResult<List<JobAdvertisement>> getAllByEmployerId(int employerId);
 		
 	Result setAdvertisementInactive(int advertisementId);
+	
+	Result add(JobAdvertisement jobAdvertisement);
 	}

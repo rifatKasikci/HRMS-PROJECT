@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import kodlamaio.hrms.business.abstracts.JobPositionService;
 import kodlamaio.hrms.core.utilities.results.DataResult;
+import kodlamaio.hrms.core.utilities.results.ErrorResult;
 import kodlamaio.hrms.core.utilities.results.Result;
 import kodlamaio.hrms.core.utilities.results.SuccessDataResult;
 import kodlamaio.hrms.core.utilities.results.SuccessResult;
@@ -31,8 +32,21 @@ public class JobPositionManager implements JobPositionService{
 
 	@Override
 	public Result add(JobPosition jobPosition) {
-		this.jobPositionDao.save(jobPosition);
+		if (this.isDataRightChecker(jobPosition).isSuccess()) {
+			this.jobPositionDao.save(jobPosition);
 		return new SuccessResult("İş pozisyonu eklendi.");
+		}
+		
+		return this.isDataRightChecker(jobPosition);
+		
+	}
+	
+	private Result isDataRightChecker(JobPosition jobPosition) {
+		if (jobPosition.getPositionName().isBlank() || jobPosition.getPositionName().equals(null)) {
+			return new ErrorResult("Pozisyon adı boş bırakılamaz.");
+		}
+		
+		return new SuccessResult();
 	}
 
 	

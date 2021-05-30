@@ -51,4 +51,10 @@ public class JobAdvertisementsContoller {
 		return this.jobAdvertisementService.setAdvertisementInactive(advertisementId);
 	}
 	
+	@PostMapping("add")
+	public Result add(@RequestBody JobAdvertisement jobAdvertisement) {
+		return this.jobAdvertisementService.add(jobAdvertisement);
+	}
+	
+	
 }
