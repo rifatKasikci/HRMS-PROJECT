@@ -1,7 +1,6 @@
 package kodlamaio.hrms.entities.concretes;
 
-import java.time.LocalDateTime;
-
+import java.time.LocalDate;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -28,24 +27,24 @@ public class JobAdvertisement {
 	private int id;
 	
 	@Column(name = "release_date")
-	private LocalDateTime releaseDate;
+	private LocalDate releaseDate;
 	
 	@Column(name = "application_deadline")
-	private LocalDateTime applicationDeadline;
+	private LocalDate applicationDeadline;
 	
 	@Column(name = "min_salary")
-	private float minSalary;
+	private Double minSalary;
 	
 	@Column(name = "max_salary")
-	private float maxSalary;
+	private Double maxSalary;
 	
-	@Column(name = "number_of_open_postion")
+	@Column(name = "number_of_open_position")
 	private int numberOfOpenPostion;
 	
 	@Column(name = "description")
 	private String description;
 	
-	@Column(name = "is_active")
+	@Column(name = "is_activate")
 	private boolean active;
 	
 	@ManyToOne()

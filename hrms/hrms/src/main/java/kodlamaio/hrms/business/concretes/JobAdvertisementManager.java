@@ -10,7 +10,6 @@ import kodlamaio.hrms.core.utilities.results.Result;
 import kodlamaio.hrms.core.utilities.results.SuccessDataResult;
 import kodlamaio.hrms.core.utilities.results.SuccessResult;
 import kodlamaio.hrms.dataAccess.abstracts.JobAdvertisementsDao;
-import kodlamaio.hrms.entities.concretes.Employer;
 import kodlamaio.hrms.entities.concretes.JobAdvertisement;
 
 @Service
@@ -18,7 +17,7 @@ public class JobAdvertisementManager implements JobAdvertisementService{
 
 	private JobAdvertisementsDao jobAdvertisementDao;
 
-	public JobAdvertisementManager(JobAdvertisementsDao jobAdvertisementDao) {
+	public JobAdvertisementManager(JobAdvertisementsDao jobAdvertisementDao ) {
 		super();
 		this.jobAdvertisementDao = jobAdvertisementDao;
 	}
@@ -38,11 +37,17 @@ public class JobAdvertisementManager implements JobAdvertisementService{
 		return new SuccessDataResult<List<JobAdvertisement>>(this.jobAdvertisementDao.findByEmployer_Id(employerId));
 	}
 
+
 	@Override
-	public Result add(JobAdvertisement jobAdvertisement) {
-		this.jobAdvertisementDao.save(jobAdvertisement);
-		return new SuccessResult("İş ilanı eklendi.");
-		}
+	public Result setAdvertisementInactive(int advertisementId) {
+	
+		JobAdvertisement referenceEntity = this.jobAdvertisementDao.getOne(advertisementId);
+		referenceEntity.setActive(false);
+		this.jobAdvertisementDao.save(referenceEntity);
+		return new SuccessResult("İş ilanı pasif hale getirildi.");
+	}
+	
+	
 
 	
 }
