@@ -15,7 +15,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "emloyees")
+@Table(name = "employees")
 public class Employee extends User{
 
 	@Column(name = "first_name")
