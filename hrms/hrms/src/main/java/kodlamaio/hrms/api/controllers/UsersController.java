@@ -14,7 +14,7 @@ import kodlamaio.hrms.core.utilities.results.Result;
 import kodlamaio.hrms.entities.abstracts.User;
 
 @RestController
-@RequestMapping("/api/users")
+@RequestMapping("/api/users/")
 public class UsersController {
 
 	private UserService userService;
@@ -23,19 +23,19 @@ public class UsersController {
 		this.userService = userService;
 	}
 	
-	@GetMapping("/getall")
+	@GetMapping("getall")
 	public DataResult<List<User>> getAll(){
 		return this.userService.getAll();
 	}
 	
-	@GetMapping("/getbyemail")
+	@GetMapping("getbyemail")
 	public DataResult<List<User>> getByEmail(String email){
 	  return this.userService.getUserByEmail(email);
 	}
 	
 	
 	
-	@PostMapping("/add")
+	@PostMapping("add")
 	public Result add(@RequestBody User user){
 		return this.userService.add(user);
 	}

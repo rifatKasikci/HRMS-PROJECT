@@ -9,7 +9,7 @@ import kodlamaio.hrms.business.abstracts.EmailVerificationCodeService;
 import kodlamaio.hrms.core.utilities.results.Result;
 
 @RestController
-@RequestMapping("/api/verify")
+@RequestMapping("/api/verify/")
 public class EmailVerificationCodesController {
 
 	private EmailVerificationCodeService emailVerificationService;
@@ -19,7 +19,7 @@ public class EmailVerificationCodesController {
 		this.emailVerificationService = emailVerificationService;
 	}
 	
-	@PostMapping("/update/{verificationCode}/{id}")
+	@PostMapping("update/{verificationCode}/{id}")
 	public Result setVerify(@RequestParam String verificationCode,@RequestParam Integer id) {
 		return this.emailVerificationService.verifyCode(verificationCode, id);
 	}

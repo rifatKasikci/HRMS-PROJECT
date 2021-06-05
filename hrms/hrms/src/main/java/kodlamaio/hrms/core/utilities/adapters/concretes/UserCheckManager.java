@@ -1,6 +1,7 @@
-package kodlamaio.hrms.core.utilities.adapters.abstracts;
+package kodlamaio.hrms.core.utilities.adapters.concretes;
 
 
+import kodlamaio.hrms.core.utilities.adapters.abstracts.UserCheckService;
 import kodlamaio.hrms.entities.concretes.Candidate;
 
 public class UserCheckManager implements UserCheckService{

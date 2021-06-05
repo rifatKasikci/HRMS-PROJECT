@@ -18,7 +18,7 @@ import kodlamaio.hrms.core.utilities.results.Result;
 import kodlamaio.hrms.entities.concretes.JobAdvertisement;
 
 @RestController
-@RequestMapping("/api/jobadvertisement/")
+@RequestMapping("/api/jobAdvertisement/")
 @Service
 public class JobAdvertisementsContoller {
 
@@ -47,7 +47,7 @@ public class JobAdvertisementsContoller {
 	
 	
 	@PostMapping("setadvertisementinactive")
-	public Result setAdvertisementInactive(int advertisementId) {
+	public Result setAdvertisementInactive(@RequestParam int advertisementId) {
 		return this.jobAdvertisementService.setAdvertisementInactive(advertisementId);
 	}
 	
