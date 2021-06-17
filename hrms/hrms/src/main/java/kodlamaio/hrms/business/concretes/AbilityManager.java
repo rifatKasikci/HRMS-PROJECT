@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import kodlamaio.hrms.business.abstracts.AbilityService;
+import kodlamaio.hrms.business.constants.Messages;
 import kodlamaio.hrms.core.utilities.results.DataResult;
 import kodlamaio.hrms.core.utilities.results.Result;
 import kodlamaio.hrms.core.utilities.results.SuccessDataResult;
@@ -27,12 +28,12 @@ public class AbilityManager implements AbilityService{
 	@Override
 	public Result add(Ability ability) {
 		this.abilityDao.save(ability);
-		return new SuccessResult();
+		return new SuccessResult(Messages.abilityAdded);
 	}
 
 	@Override
 	public DataResult<List<Ability>> getAll() {
-		return new SuccessDataResult<List<Ability>>(this.abilityDao.findAll());
+		return new SuccessDataResult<List<Ability>>(this.abilityDao.findAll() , Messages.abilitiesListed);
 	}
 	
 	

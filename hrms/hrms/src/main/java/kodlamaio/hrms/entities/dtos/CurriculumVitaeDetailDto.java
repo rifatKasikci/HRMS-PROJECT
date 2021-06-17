@@ -6,6 +6,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import kodlamaio.hrms.entities.concretes.Candidate;
 import kodlamaio.hrms.entities.concretes.CandidateAbility;
+import kodlamaio.hrms.entities.concretes.CandidateImage;
 import kodlamaio.hrms.entities.concretes.CandidateSchoolWithDepartment;
 import kodlamaio.hrms.entities.concretes.CurriculumVitae;
 import kodlamaio.hrms.entities.concretes.JobExperience;
@@ -32,6 +33,8 @@ public class CurriculumVitaeDetailDto {
 	private List<CandidateAbility> candidateAbilities;
 	
 	private List<SocialMediaAccount> socialMediaAccounts;
+	
+	private List<CandidateImage> candidateImages;
 	
 	private CurriculumVitae curriculumVitae; 
 	

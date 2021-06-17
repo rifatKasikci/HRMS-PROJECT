@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import kodlamaio.hrms.business.abstracts.UserService;
+import kodlamaio.hrms.business.constants.Messages;
 import kodlamaio.hrms.core.utilities.results.DataResult;
 import kodlamaio.hrms.core.utilities.results.Result;
 import kodlamaio.hrms.core.utilities.results.SuccessDataResult;
@@ -31,12 +32,12 @@ public class UserManager implements UserService{
 	@Override
 	public Result add(User user) {
 		this.userDao.save(user);
-		return new SuccessResult("Data eklendi");
+		return new SuccessResult(Messages.userAdded);
 	}
 
 	@Override
 	public DataResult<List<User>> getUserByEmail(String email) {
-	 return new SuccessDataResult<List<User>>(this.userDao.findAllByEmail(email));
+	 return new SuccessDataResult<List<User>>(this.userDao.findAllByEmail(email) , Messages.usersListed);
 	}
 
 }

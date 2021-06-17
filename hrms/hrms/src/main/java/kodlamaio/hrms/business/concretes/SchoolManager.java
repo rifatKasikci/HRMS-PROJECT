@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import kodlamaio.hrms.business.abstracts.SchoolService;
+import kodlamaio.hrms.business.constants.Messages;
 import kodlamaio.hrms.core.utilities.results.DataResult;
 import kodlamaio.hrms.core.utilities.results.Result;
 import kodlamaio.hrms.core.utilities.results.SuccessDataResult;
@@ -27,12 +28,12 @@ public class SchoolManager implements SchoolService{
 	@Override
 	public Result add(School school) {
 		this.schoolDao.save(school); 
-		return new SuccessResult("Okul eklendi.");
+		return new SuccessResult(Messages.schoolAdded);
 	}
 
 	@Override
 	public DataResult<List<School>> getAll() {
-		return new SuccessDataResult<List<School>>(this.schoolDao.findAll());
+		return new SuccessDataResult<List<School>>(this.schoolDao.findAll() , Messages.candidateSchoolsListed);
 	}
 
 }

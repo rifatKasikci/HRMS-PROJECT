@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import kodlamaio.hrms.business.abstracts.JobExperienceService;
+import kodlamaio.hrms.business.constants.Messages;
 import kodlamaio.hrms.core.utilities.results.DataResult;
 import kodlamaio.hrms.core.utilities.results.Result;
 import kodlamaio.hrms.core.utilities.results.SuccessDataResult;
@@ -27,22 +28,22 @@ public class JobExperienceManager implements JobExperienceService{
 	@Override
 	public Result add(JobExperience jobExperience) {
 		this.jobExperienceDao.save(jobExperience);
-		return new SuccessResult("İş tecrübesi eklendi.");
+		return new SuccessResult(Messages.jobExperienceAdded);
 	}
 
 	@Override
 	public DataResult<List<JobExperience>> getAll() {
-		return new SuccessDataResult<List<JobExperience>>(this.jobExperienceDao.findAll());
+		return new SuccessDataResult<List<JobExperience>>(this.jobExperienceDao.findAll() , Messages.jobExperiencesListed);
 	}
 
 	@Override
 	public DataResult<List<JobExperience>> getAllByOrderByEndingDateDesc() {
-		return new SuccessDataResult<List<JobExperience>>(this.jobExperienceDao.getAllByOrderByEndingDateDesc());
+		return new SuccessDataResult<List<JobExperience>>(this.jobExperienceDao.getAllByOrderByEndingDateDesc() , Messages.jobExperiencesListed);
 	}
 
 	@Override
 	public DataResult<List<JobExperience>> getAllByCandidateIdOrderByEndingDateDesc(int candidateId) {
-		return new SuccessDataResult<List<JobExperience>>(this.jobExperienceDao.getAllByCandidateIdOrderByEndingDateDesc(candidateId));
+		return new SuccessDataResult<List<JobExperience>>(this.jobExperienceDao.getAllByCandidateIdOrderByEndingDateDesc(candidateId) , Messages.jobExperiencesListed);
 	}
 
 }

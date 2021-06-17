@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import kodlamaio.hrms.business.abstracts.CandidateService;
 import kodlamaio.hrms.business.abstracts.EmailVerificationCodeService;
 import kodlamaio.hrms.business.abstracts.UserService;
+import kodlamaio.hrms.business.constants.Messages;
 import kodlamaio.hrms.core.utilities.adapters.concretes.UserCheckManager;
 import kodlamaio.hrms.core.utilities.results.DataResult;
 import kodlamaio.hrms.core.utilities.results.ErrorResult;
@@ -41,7 +42,7 @@ public class CandidateManager implements CandidateService{
 
 	@Override
 	public DataResult<List<Candidate>> getAll() {
-		return new SuccessDataResult<List<Candidate>>(this.candidateDao.findAll(),"Data listelendi");
+		return new SuccessDataResult<List<Candidate>>(this.candidateDao.findAll(),Messages.candidatesListed);
 	}
 
 	@Override
@@ -50,7 +51,7 @@ public class CandidateManager implements CandidateService{
 		if (isDataRightChecker(candidate, passwordRepeat).isSuccess() && userCheckManager.checkUser(candidate)) {
 			this.candidateDao.save(candidate);
 			this.emailVerificationService.createCode(new EmailVerificationCode(), candidate.getId());
-			return new SuccessResult("İş arayan eklendi.");
+			return new SuccessResult(Messages.candidateAdded);
 		}
 		return new ErrorResult(isDataRightChecker(candidate, passwordRepeat).getMessage());
 	}
@@ -79,7 +80,7 @@ public class CandidateManager implements CandidateService{
 			return new ErrorResult("Bu e-posta adresi daha önce alınmış.");
 		}
 		
-		return new SuccessResult("İş arayan eklendi.");
+		return new SuccessResult();
 	}
 
 	

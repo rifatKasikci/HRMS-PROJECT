@@ -1,5 +1,7 @@
 package kodlamaio.hrms.api.controllers;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -10,10 +12,12 @@ import kodlamaio.hrms.core.utilities.results.Result;
 
 @RestController
 @RequestMapping("/api/verify/")
+@CrossOrigin
 public class EmailVerificationCodesController {
 
 	private EmailVerificationCodeService emailVerificationService;
 
+	@Autowired
 	public EmailVerificationCodesController(EmailVerificationCodeService emailVerificationService) {
 		super();
 		this.emailVerificationService = emailVerificationService;

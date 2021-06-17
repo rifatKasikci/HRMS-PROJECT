@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import kodlamaio.hrms.business.abstracts.SchoolAndDepartmentService;
+import kodlamaio.hrms.business.constants.Messages;
 import kodlamaio.hrms.core.utilities.results.DataResult;
 import kodlamaio.hrms.core.utilities.results.Result;
 import kodlamaio.hrms.core.utilities.results.SuccessDataResult;
@@ -27,12 +28,12 @@ public class SchoolAndDepartmentManager implements SchoolAndDepartmentService{
 	@Override
 	public Result add(SchoolAndDepartment schoolAndDepartment) {
 		this.schoolAndDepartmentDao.save(schoolAndDepartment);
-		return new SuccessResult();
+		return new SuccessResult(Messages.schoolAdded);
 	}
 
 	@Override
 	public DataResult<List<SchoolAndDepartment>> getAll() {
-		return new SuccessDataResult<List<SchoolAndDepartment>>(this.schoolAndDepartmentDao.findAll());
+		return new SuccessDataResult<List<SchoolAndDepartment>>(this.schoolAndDepartmentDao.findAll() , Messages.shoolsListed);
 	}
 	
 	

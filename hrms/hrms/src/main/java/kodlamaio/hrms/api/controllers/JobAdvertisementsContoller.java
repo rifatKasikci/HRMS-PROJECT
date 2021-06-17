@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -19,7 +20,7 @@ import kodlamaio.hrms.entities.concretes.JobAdvertisement;
 
 @RestController
 @RequestMapping("/api/jobAdvertisement/")
-@Service
+@CrossOrigin
 public class JobAdvertisementsContoller {
 
 	private JobAdvertisementService jobAdvertisementService;
@@ -45,12 +46,17 @@ public class JobAdvertisementsContoller {
 		return this.jobAdvertisementService.getAllByEmployerId(employerId);
 	}
 	
-	
-	@PostMapping("setadvertisementinactive")
-	public Result setAdvertisementInactive(@RequestParam int advertisementId) {
-		return this.jobAdvertisementService.setAdvertisementInactive(advertisementId);
+	@GetMapping("findunapprovedadvertisements")
+	public DataResult<List<JobAdvertisement>> findUnapprovedAdvertisements(){
+		return this.jobAdvertisementService.getUnapprovedAdvertisements();
 	}
 	
+	@GetMapping("getbyid")
+	public DataResult<List<JobAdvertisement>> getById(@RequestParam int id){
+		return this.jobAdvertisementService.getById(id);
+	}
+	
+		
 	@PostMapping("add")
 	public Result add(@RequestBody JobAdvertisement jobAdvertisement) {
 		return this.jobAdvertisementService.add(jobAdvertisement);

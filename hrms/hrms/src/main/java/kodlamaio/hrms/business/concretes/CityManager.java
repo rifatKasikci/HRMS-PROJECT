@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import kodlamaio.hrms.business.abstracts.CityService;
+import kodlamaio.hrms.business.constants.Messages;
 import kodlamaio.hrms.core.utilities.results.DataResult;
 import kodlamaio.hrms.core.utilities.results.ErrorResult;
 import kodlamaio.hrms.core.utilities.results.Result;
@@ -26,14 +27,14 @@ public class CityManager implements CityService{
 	
 	@Override
 	public DataResult<List<City>> getAll() {
-		return new SuccessDataResult<List<City>>(this.cityDao.findAll() , "Şehirler listelendi.");
+		return new SuccessDataResult<List<City>>(this.cityDao.findAll() , Messages.citiesListed);
 	}
 
 	@Override
 	public Result add(City city) {
 		if (this.isDataRightChecker(city).isSuccess()) {
 			this.cityDao.save(city);
-		return new SuccessResult("Şehir eklendi.");
+		return new SuccessResult(Messages.cityAdded);
 		}
 		return isDataRightChecker(city);
 		

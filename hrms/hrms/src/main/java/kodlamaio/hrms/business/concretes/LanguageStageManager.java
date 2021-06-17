@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import kodlamaio.hrms.business.abstracts.LanguageStageService;
+import kodlamaio.hrms.business.constants.Messages;
 import kodlamaio.hrms.core.utilities.results.DataResult;
 import kodlamaio.hrms.core.utilities.results.Result;
 import kodlamaio.hrms.core.utilities.results.SuccessDataResult;
@@ -27,12 +28,12 @@ public class LanguageStageManager implements LanguageStageService {
 	@Override
 	public Result add(LanguageStage languageStage) {
 		this.languageStageDao.save(languageStage);
-		return new SuccessResult();
+		return new SuccessResult(Messages.languageStageAdded);
 	}
 
 	@Override
 	public DataResult<List<LanguageStage>> getAll() {
-		return new SuccessDataResult<List<LanguageStage>>(this.languageStageDao.findAll());
+		return new SuccessDataResult<List<LanguageStage>>(this.languageStageDao.findAll() , Messages.languageStagesListed);
 	}
 	
 	

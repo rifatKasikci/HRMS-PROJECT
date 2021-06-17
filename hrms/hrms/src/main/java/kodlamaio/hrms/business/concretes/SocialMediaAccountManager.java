@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import kodlamaio.hrms.business.abstracts.SocialMediaAccountService;
+import kodlamaio.hrms.business.constants.Messages;
 import kodlamaio.hrms.core.utilities.results.DataResult;
 import kodlamaio.hrms.core.utilities.results.Result;
 import kodlamaio.hrms.core.utilities.results.SuccessDataResult;
@@ -27,12 +28,12 @@ public class SocialMediaAccountManager implements SocialMediaAccountService{
 	@Override
 	public Result add(SocialMediaAccount socialMediaAccount) {
 		this.socialMediaAccountDao.save(socialMediaAccount);
-		return new SuccessResult();
+		return new SuccessResult(Messages.socialMediaAccountAdded);
 	}
 
 	@Override
 	public DataResult<List<SocialMediaAccount>> getAll() {
-		return new SuccessDataResult<List<SocialMediaAccount>>(this.socialMediaAccountDao.findAll());
+		return new SuccessDataResult<List<SocialMediaAccount>>(this.socialMediaAccountDao.findAll() , Messages.socialMediaAccountListed);
 	}
 
 }

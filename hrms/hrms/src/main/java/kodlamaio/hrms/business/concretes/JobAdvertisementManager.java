@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import kodlamaio.hrms.business.abstracts.JobAdvertisementService;
+import kodlamaio.hrms.business.constants.Messages;
 import kodlamaio.hrms.core.utilities.results.DataResult;
 import kodlamaio.hrms.core.utilities.results.ErrorResult;
 import kodlamaio.hrms.core.utilities.results.Result;
@@ -35,39 +36,46 @@ public class JobAdvertisementManager implements JobAdvertisementService{
 
 	@Override
 	public DataResult<List<JobAdvertisement>> getAll() {
-		return new SuccessDataResult<List<JobAdvertisement>>(this.jobAdvertisementDao.findAll() , "İş ilanları listelendi."); 
+		return new SuccessDataResult<List<JobAdvertisement>>(this.jobAdvertisementDao.findAll() , Messages.jobAdvertisementsListed); 
 	}
 	
 	@Override
 	public DataResult<List<JobAdvertisement>> getAllByActiveTrue() {
-		return new SuccessDataResult<List<JobAdvertisement>>(this.jobAdvertisementDao.findByActiveTrue() , "Aktif iş ilanları listelendi.");
+		return new SuccessDataResult<List<JobAdvertisement>>(this.jobAdvertisementDao.findByActiveTrue() ,  Messages.activeJobAdvertisementsListed);
 	}
 
 	@Override
 	public DataResult<List<JobAdvertisement>> getAllByEmployerId(int employerId) {
-		return new SuccessDataResult<List<JobAdvertisement>>(this.jobAdvertisementDao.findByEmployer_Id(employerId));
+		return new SuccessDataResult<List<JobAdvertisement>>(this.jobAdvertisementDao.findByEmployer_Id(employerId) ,  Messages.jobAdvertisementsListed);
 	}
-
-
-	@Override
-	public Result setAdvertisementInactive(int advertisementId) {
 	
-		JobAdvertisement referenceEntity = this.jobAdvertisementDao.getOne(advertisementId);
-		referenceEntity.setActive(false);
-		this.jobAdvertisementDao.save(referenceEntity);
-		return new SuccessResult("İş ilanı pasif hale getirildi.");
+	@Override
+	public DataResult<List<JobAdvertisement>> getUnapprovedAdvertisements() {
+		return new SuccessDataResult<List<JobAdvertisement>>(this.jobAdvertisementDao.findUnapprovedAdvertisements());
+
 	}
 
 	@Override
 	public Result add(JobAdvertisement jobAdvertisement) {
 		if (this.isDataRight(jobAdvertisement).isSuccess()) {
-			this.jobAdvertisementDao.save(jobAdvertisement);
-		return new SuccessResult("İş ilanı eklendi.");
+			JobAdvertisement referenceObject = jobAdvertisement;
+			referenceObject.setActive(false);
+			referenceObject.setDeleted(false);
+			referenceObject.setReleaseDate(java.time.LocalDate.now());			
+			this.jobAdvertisementDao.save(referenceObject);
+		return new SuccessResult(Messages.jobAdvertisementAdded);
 		}
 		
 		return new ErrorResult(this.isDataRight(jobAdvertisement).getMessage());
 		
 	}
+	
+	@Override
+	public DataResult<List<JobAdvertisement>> getById(int id) {
+		return new SuccessDataResult<List<JobAdvertisement>>(this.jobAdvertisementDao.findById(id));
+	}
+	
+	
 	
 	private Result isDataRight(JobAdvertisement jobAdvertisement) {
 		if (jobAdvertisement.getApplicationDeadline() == null) {
@@ -140,6 +148,9 @@ public class JobAdvertisementManager implements JobAdvertisementService{
 		}
 		return true;
 	}
+
+
+	
 	
 	
 }

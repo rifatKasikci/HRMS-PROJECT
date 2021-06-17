@@ -2,6 +2,8 @@ package kodlamaio.hrms.api.controllers;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -15,10 +17,12 @@ import kodlamaio.hrms.entities.concretes.LanguageStage;
 
 @RestController
 @RequestMapping("/api/languageStagesController/")
+@CrossOrigin
 public class LanguageStagesController {
 
 	private LanguageStageService languageStageService;
 
+	@Autowired
 	public LanguageStagesController(LanguageStageService languageStageService) {
 		super();
 		this.languageStageService = languageStageService;

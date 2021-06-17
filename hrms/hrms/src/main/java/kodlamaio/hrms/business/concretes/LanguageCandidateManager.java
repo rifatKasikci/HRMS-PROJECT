@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import kodlamaio.hrms.business.abstracts.LanguageCandidateService;
+import kodlamaio.hrms.business.constants.Messages;
 import kodlamaio.hrms.core.utilities.results.DataResult;
 import kodlamaio.hrms.core.utilities.results.Result;
 import kodlamaio.hrms.core.utilities.results.SuccessDataResult;
@@ -27,12 +28,12 @@ public class LanguageCandidateManager implements LanguageCandidateService{
 	@Override
 	public Result add(LanguageCandidate languageCandidate) {
 		this.languageCandidateDao.save(languageCandidate);
-		return new SuccessResult();
+		return new SuccessResult(Messages.languageCandidateAdded);
 	}
 
 	@Override
 	public DataResult<List<LanguageCandidate>> getAll() {
-		return new SuccessDataResult<List<LanguageCandidate>>(this.languageCandidateDao.findAll());
+		return new SuccessDataResult<List<LanguageCandidate>>(this.languageCandidateDao.findAll() , Messages.languageCandiddatesListed);
 	}
 
 }
