@@ -47,6 +47,17 @@ public class JobAdvertisement {
 	@Column(name = "is_activate")
 	private boolean active;
 	
+	@Column(name = "is_deleted")
+	private boolean isDeleted;
+	
+	@ManyToOne()
+	@JoinColumn(name = "way_of_working_id")
+	private WayOfWorking wayOfWorking;
+	
+	@ManyToOne()
+	@JoinColumn(name = "working_time_id")
+	private WorkingTime workingTime;
+	
 	@ManyToOne()
 	@JoinColumn(name = "city_id")
 	private City city;

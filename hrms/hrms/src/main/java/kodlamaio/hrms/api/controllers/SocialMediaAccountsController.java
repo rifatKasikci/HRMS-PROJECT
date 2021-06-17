@@ -2,6 +2,8 @@ package kodlamaio.hrms.api.controllers;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -15,10 +17,12 @@ import kodlamaio.hrms.entities.concretes.SocialMediaAccount;
 
 @RestController
 @RequestMapping("/api/socialMediaAccounts/")
+@CrossOrigin
 public class SocialMediaAccountsController {
 
 	private SocialMediaAccountService socialMediaAccountService;
 
+	@Autowired
 	public SocialMediaAccountsController(SocialMediaAccountService socialMediaAccountService) {
 		super();
 		this.socialMediaAccountService = socialMediaAccountService;

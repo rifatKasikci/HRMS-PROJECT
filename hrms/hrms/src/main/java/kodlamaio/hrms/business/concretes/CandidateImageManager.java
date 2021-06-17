@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import kodlamaio.hrms.business.abstracts.CandidateImageService;
+import kodlamaio.hrms.business.constants.Messages;
 import kodlamaio.hrms.core.utilities.helpers.ImageUploadService;
 import kodlamaio.hrms.core.utilities.results.DataResult;
 import kodlamaio.hrms.core.utilities.results.Result;
@@ -41,13 +42,13 @@ public class CandidateImageManager implements CandidateImageService{
 		candidateImage.setImageUrl(photoUrl);
 		
 		this.candidateImageDao.save(candidateImage);
-		return new SuccessResult("Fotoğraf eklendi.");
+		return new SuccessResult(Messages.imageAdded);
 		
 	}
 
 	@Override
 	public DataResult<List<CandidateImage>> getAll() {
-	return new SuccessDataResult<List<CandidateImage>>(this.candidateImageDao.findAll());
+	return new SuccessDataResult<List<CandidateImage>>(this.candidateImageDao.findAll() , Messages.imagesListed);
 	}
 
 	

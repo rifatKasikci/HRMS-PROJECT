@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import kodlamaio.hrms.business.abstracts.DepartmentService;
+import kodlamaio.hrms.business.constants.Messages;
 import kodlamaio.hrms.core.utilities.results.DataResult;
 import kodlamaio.hrms.core.utilities.results.Result;
 import kodlamaio.hrms.core.utilities.results.SuccessDataResult;
@@ -26,12 +27,12 @@ public class DepartmentManager implements DepartmentService{
 	@Override
 	public Result add(Department department) {
 		this.departmentDao.save(department);
-		return new SuccessResult("Departman eklendi.");
+		return new SuccessResult(Messages.departmentAdded);
 	}
 
 	@Override
 	public DataResult<List<Department>> getAll() {
-		return new SuccessDataResult<List<Department>>(this.departmentDao.findAll());
+		return new SuccessDataResult<List<Department>>(this.departmentDao.findAll() , Messages.departmentsListed);
 	}
 
 }

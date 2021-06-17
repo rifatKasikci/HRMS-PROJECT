@@ -9,39 +9,55 @@ import org.springframework.stereotype.Service;
 
 import kodlamaio.hrms.business.abstracts.EmailVerificationCodeService;
 import kodlamaio.hrms.business.abstracts.EmployerService;
+import kodlamaio.hrms.business.constants.Messages;
 import kodlamaio.hrms.core.utilities.results.DataResult;
 import kodlamaio.hrms.core.utilities.results.ErrorResult;
 import kodlamaio.hrms.core.utilities.results.Result;
 import kodlamaio.hrms.core.utilities.results.SuccessDataResult;
 import kodlamaio.hrms.core.utilities.results.SuccessResult;
 import kodlamaio.hrms.dataAccess.abstracts.EmployerDao;
+import kodlamaio.hrms.dataAccess.abstracts.JobAdvertisementsDao;
 import kodlamaio.hrms.entities.concretes.EmailVerificationCode;
 import kodlamaio.hrms.entities.concretes.Employer;
+import kodlamaio.hrms.entities.concretes.JobAdvertisement;
 
 @Service
 public class EmployerManager implements EmployerService{
 
 	private EmployerDao employerDao;
+	private JobAdvertisementsDao jobAdvertisementDao;
 	private EmailVerificationCodeService emailVerificationService;
 	
 	@Autowired
-	public EmployerManager(EmployerDao employerDao , EmailVerificationCodeService emailVerificationService) {
+	public EmployerManager(EmployerDao employerDao , EmailVerificationCodeService emailVerificationService , JobAdvertisementsDao jobAdvertisementDao) {
 		super();
 		this.employerDao = employerDao;
+		this.jobAdvertisementDao = jobAdvertisementDao;
 		this.emailVerificationService = emailVerificationService;
+		
 	}
 
 	@Override
 	public DataResult<List<Employer>> getAll() {
-		return new SuccessDataResult<List<Employer>>(this.employerDao.findAll(),"Data listelendi");
+		return new SuccessDataResult<List<Employer>>(this.employerDao.findAll(),Messages.employersListed);
 	}
-
+	
+	@Override
+		public Result setAdvertisementInactive(int advertisementId) {
+		JobAdvertisement referenceEntity = this.jobAdvertisementDao.getOne(advertisementId);
+		referenceEntity.setActive(false);
+		referenceEntity.setDeleted(true);
+		this.jobAdvertisementDao.save(referenceEntity);
+		return new SuccessResult(Messages.jobAdvertisementInactivated);
+		}
+	
+	
 	@Override
 	public Result add(Employer employer , String passwordRepeat) {
 		if (isDataRight(employer, passwordRepeat).isSuccess()) {
 			this.employerDao.save(employer);
 			this.emailVerificationService.createCode(new EmailVerificationCode(), employer.getId());
-	     	return new SuccessResult("İşveren eklendi.");
+	     	return new SuccessResult(Messages.employerAdded);
 		}
 		return new ErrorResult(this.isDataRight(employer, passwordRepeat).getMessage());
 		
@@ -118,5 +134,6 @@ public class EmployerManager implements EmployerService{
 		
 		return true;
 	}
+
 	
 }

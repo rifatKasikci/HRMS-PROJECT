@@ -10,32 +10,31 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import kodlamaio.hrms.business.abstracts.AbilityService;
+import kodlamaio.hrms.business.abstracts.WayOfWorkingService;
 import kodlamaio.hrms.core.utilities.results.DataResult;
 import kodlamaio.hrms.core.utilities.results.Result;
-import kodlamaio.hrms.entities.concretes.Ability;
+import kodlamaio.hrms.entities.concretes.WayOfWorking;
 
 @RestController
-@RequestMapping("/api/abilities/")
+@RequestMapping("/api/wayOfWorkings/")
 @CrossOrigin
-public class AbilitiesController {
+public class WayOfWorkingsController {
 
-	private AbilityService abilityService;
+	private WayOfWorkingService wayOfWorkingService;
 
 	@Autowired
-	public AbilitiesController(AbilityService abilityService) {
+	public WayOfWorkingsController(WayOfWorkingService wayOfWorkingService) {
 		super();
-		this.abilityService = abilityService;
+		this.wayOfWorkingService = wayOfWorkingService;
 	}
 	
 	@GetMapping("getall")
-	public DataResult<List<Ability>> getAll(){
-		return this.abilityService.getAll();
+	public DataResult<List<WayOfWorking>> getAll(){
+		return this.wayOfWorkingService.getAll();
 	}
 	
 	@PostMapping("add")
-	public Result add(@RequestBody Ability ability) {
-		return this.abilityService.add(ability);
+	public Result add(@RequestBody WayOfWorking wayOfWorking){
+		return this.wayOfWorkingService.add(wayOfWorking);
 	}
-	
 }

@@ -9,6 +9,8 @@ import kodlamaio.hrms.entities.concretes.Employer;
 public interface EmployerService {
 
 	DataResult<List<Employer>> getAll();
-
+	
+	Result setAdvertisementInactive(int advertisementId);
+	
 	Result add(Employer employer , String passwordRepeat);
 }

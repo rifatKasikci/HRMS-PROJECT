@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import kodlamaio.hrms.business.abstracts.WorkplaceService;
+import kodlamaio.hrms.business.constants.Messages;
 import kodlamaio.hrms.core.utilities.results.DataResult;
 import kodlamaio.hrms.core.utilities.results.Result;
 import kodlamaio.hrms.core.utilities.results.SuccessDataResult;
@@ -27,12 +28,12 @@ public class WorkplaceManager implements WorkplaceService{
 	@Override
 	public Result add(Workplace workplace) {
 		this.workplaceDao.save(workplace);
-		return new SuccessResult("İş yeri eklendi.");
+		return new SuccessResult(Messages.workplaceAdded);
 	}
 
 	@Override
 	public DataResult<List<Workplace>> getAll() {
-		return new SuccessDataResult<List<Workplace>>(this.workplaceDao.findAll());
+		return new SuccessDataResult<List<Workplace>>(this.workplaceDao.findAll() , Messages.workplacesListed);
 	}
 
 }

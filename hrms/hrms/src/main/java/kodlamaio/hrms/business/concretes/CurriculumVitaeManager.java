@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import kodlamaio.hrms.business.abstracts.CurriculumVitaeDetailService;
 import kodlamaio.hrms.business.abstracts.CurriculumVitaeService;
+import kodlamaio.hrms.business.constants.Messages;
 import kodlamaio.hrms.core.utilities.results.DataResult;
 import kodlamaio.hrms.core.utilities.results.Result;
 import kodlamaio.hrms.core.utilities.results.SuccessDataResult;
@@ -39,7 +40,7 @@ public class CurriculumVitaeManager implements CurriculumVitaeService {
 	@Override
 	public Result add(CurriculumVitae curriculumVitae) {
 		this.curriculumVitaeDao.save(curriculumVitae);
-		return new SuccessResult("Cv eklendi.");
+		return new SuccessResult(Messages.curriculumVitaeAdded);
 	}
 
 	@Override
@@ -53,10 +54,11 @@ public class CurriculumVitaeManager implements CurriculumVitaeService {
 				this.getAllLanguageCandidateByCandidateId(candidateId).getData(),
 				this.getAllCandidateAbilityByCandidateId(candidateId).getData(),
 				this.getAllSocialMediaAccountByCandidateId(candidateId).getData(),
+				this.getAllCandidateImageByCandidateId(candidateId).getData(),
 				this.curriculumVitaeDao.getByCandidate_Id(candidateId)
 				);
 		
-		return new SuccessDataResult<CurriculumVitaeDetailDto>(curriculumVitaeDetailDto);
+		return new SuccessDataResult<CurriculumVitaeDetailDto>(curriculumVitaeDetailDto , Messages.curriculumVitaesListed);
 	}
 
 	
@@ -92,3 +94,5 @@ public class CurriculumVitaeManager implements CurriculumVitaeService {
 	}
 
 }
+
+
