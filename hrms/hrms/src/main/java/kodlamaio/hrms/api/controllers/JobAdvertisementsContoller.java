@@ -3,6 +3,7 @@ package kodlamaio.hrms.api.controllers;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -33,13 +34,13 @@ public class JobAdvertisementsContoller {
 	}
 	
 	@GetMapping("getall")
-	public DataResult<List<JobAdvertisement>> getAll(){
-		return this.jobAdvertisementService.getAll();
+	public DataResult<List<JobAdvertisement>> getAll(@RequestParam int pageNo ,@RequestParam int pageSize){
+		return this.jobAdvertisementService.getAll(pageNo,pageSize);
 	}
 	
 	@GetMapping("getallbyactivetrue")
-	public DataResult<List<JobAdvertisement>> getAllByActiveTrue(){
-		return this.jobAdvertisementService.getAllByActiveTrue();
+	public DataResult<List<JobAdvertisement>> getAllByActiveTrue(@RequestParam int pageNo,@RequestParam int pageSize){
+		return this.jobAdvertisementService.getAllByActiveTrue(pageNo,pageSize);
 	}
 	
 	@GetMapping("getallbyemployerid")
@@ -48,8 +49,8 @@ public class JobAdvertisementsContoller {
 	}
 	
 	@GetMapping("findunapprovedadvertisements")
-	public DataResult<List<JobAdvertisement>> findUnapprovedAdvertisements(){
-		return this.jobAdvertisementService.getUnapprovedAdvertisements();
+	public DataResult<List<JobAdvertisement>> findUnapprovedAdvertisements(@RequestParam int pageNo,@RequestParam int pageSize){
+		return this.jobAdvertisementService.getUnapprovedAdvertisements(pageNo,pageSize);
 	}
 	
 	@GetMapping("getbyid")

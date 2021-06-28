@@ -18,4 +18,6 @@ public interface EmployeeService {
 	Result add(Employee employee);
 	
 	Result delete(int jobAdvertisementId);
+	
+	Result update(Employee employee);
 }

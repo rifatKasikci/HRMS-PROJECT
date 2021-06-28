@@ -1,10 +1,9 @@
 package kodlamaio.hrms.business.concretes;
 
+import java.io.Console;
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import kodlamaio.hrms.business.abstracts.CurriculumVitaeDetailService;
 import kodlamaio.hrms.business.abstracts.CurriculumVitaeService;
 import kodlamaio.hrms.business.constants.Messages;
@@ -61,7 +60,14 @@ public class CurriculumVitaeManager implements CurriculumVitaeService {
 		return new SuccessDataResult<CurriculumVitaeDetailDto>(curriculumVitaeDetailDto , Messages.curriculumVitaesListed);
 	}
 
-	
+	@Override
+	public Result update(CurriculumVitae curriculumVitae) {
+		CurriculumVitae curriculumVitaeForUpdate = this.curriculumVitaeDao.getOne(curriculumVitae.getId());
+		curriculumVitaeForUpdate = curriculumVitae;
+		this.curriculumVitaeDao.save(curriculumVitaeForUpdate);
+		return new SuccessResult("Cv updated");
+	}
+
 
 	@Override
 	public DataResult<List<CandidateSchoolWithDepartment>> getAllSchoolByCandidateId(int candidateId) {
@@ -92,6 +98,9 @@ public class CurriculumVitaeManager implements CurriculumVitaeService {
 	public DataResult<List<SocialMediaAccount>> getAllSocialMediaAccountByCandidateId(int candidateId) {
 		return this.curriculumVitaeDetailService.getAllSocialMediaAccountByCandidateId(candidateId);
 	}
+
+	
+	
 
 }
 

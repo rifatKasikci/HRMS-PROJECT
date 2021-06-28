@@ -61,4 +61,14 @@ public class EmployeeManager implements EmployeeService{
 		return new SuccessResult();
 	}
 
+	@Override
+	public Result update(Employee employee) {
+		Employee employeeForUpdate = this.employeeDao.getOne(employee.getId());
+		employeeForUpdate = employee;
+		this.employeeDao.save(employeeForUpdate);
+		return new SuccessResult("Employee Updated");
+	}
+
+	
+
 }

@@ -5,6 +5,9 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 
 import kodlamaio.hrms.business.abstracts.JobAdvertisementService;
 import kodlamaio.hrms.business.constants.Messages;
@@ -52,13 +55,16 @@ public class JobAdvertisementManager implements JobAdvertisementService{
 	}
 
 	@Override
-	public DataResult<List<JobAdvertisement>> getAll() {
-		return new SuccessDataResult<List<JobAdvertisement>>(this.jobAdvertisementDao.findAll() , Messages.jobAdvertisementsListed); 
+	public DataResult<List<JobAdvertisement>> getAll(int pageNo, int pageSize) {
+		Pageable pageable = PageRequest.of(pageNo-1, pageSize);
+		
+		return new SuccessDataResult<List<JobAdvertisement>>(this.jobAdvertisementDao.findAll(pageable).getContent());
 	}
 	
 	@Override
-	public DataResult<List<JobAdvertisement>> getAllByActiveTrue() {
-		return new SuccessDataResult<List<JobAdvertisement>>(this.jobAdvertisementDao.findByActiveTrue() ,  Messages.activeJobAdvertisementsListed);
+	public DataResult<List<JobAdvertisement>> getAllByActiveTrue(int pageNo,int pageSize) {
+		Pageable pageable = PageRequest.of(pageNo-1, pageSize);
+		return new SuccessDataResult<List<JobAdvertisement>>(this.jobAdvertisementDao.findByActiveTrue(pageable),  Messages.activeJobAdvertisementsListed);
 	}
 
 	@Override
@@ -67,8 +73,9 @@ public class JobAdvertisementManager implements JobAdvertisementService{
 	}
 	
 	@Override
-	public DataResult<List<JobAdvertisement>> getUnapprovedAdvertisements() {
-		return new SuccessDataResult<List<JobAdvertisement>>(this.jobAdvertisementDao.findUnapprovedAdvertisements());
+	public DataResult<List<JobAdvertisement>> getUnapprovedAdvertisements(int pageNo,int pageSize) {
+		Pageable pageable = PageRequest.of(pageNo-1, pageSize);
+		return new SuccessDataResult<List<JobAdvertisement>>(this.jobAdvertisementDao.findUnapprovedAdvertisements(pageable));
 
 	}
 
@@ -99,6 +106,8 @@ public class JobAdvertisementManager implements JobAdvertisementService{
 	public DataResult<List<JobAdvertisement>> getById(int id) {
 		return new SuccessDataResult<List<JobAdvertisement>>(this.jobAdvertisementDao.findById(id));
 	}
+
+	
 	
 	
 	
