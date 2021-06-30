@@ -1,6 +1,8 @@
 package kodlamaio.hrms.entities.concretes;
 
 import java.time.LocalDate;
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -8,7 +10,11 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -19,6 +25,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Entity
 @Table(name = "job_advertisements")
+@JsonIgnoreProperties({"hibernateLazyInitializer","handler","favorites"})
 public class JobAdvertisement {
 
 	@Id
@@ -69,4 +76,8 @@ public class JobAdvertisement {
 	@ManyToOne()
 	@JoinColumn(name = "job_position_id")
 	private JobPosition jobPosition;
+	
+	@JsonIgnore
+	@OneToMany(mappedBy = "jobAdvertisement")
+	private List<Favorite> favorites;
 }

@@ -17,6 +17,8 @@ public interface CurriculumVitaeService {
 
 	Result add(CurriculumVitae curriculumVitae);
 	
+	Result update(CurriculumVitae curriculumVitae);
+	
 	DataResult<CurriculumVitaeDetailDto> getCurriculumVitaeByCandidateId(int candidateId);
 	
 	DataResult<List<CandidateSchoolWithDepartment>> getAllSchoolByCandidateId(int candidateId);

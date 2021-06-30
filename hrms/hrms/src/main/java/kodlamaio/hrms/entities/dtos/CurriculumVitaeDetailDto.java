@@ -36,6 +36,6 @@ public class CurriculumVitaeDetailDto {
 	
 	private List<CandidateImage> candidateImages;
 	
-	private CurriculumVitae curriculumVitae; 
+	private CurriculumVitae curriculumVitae;
 	
 }

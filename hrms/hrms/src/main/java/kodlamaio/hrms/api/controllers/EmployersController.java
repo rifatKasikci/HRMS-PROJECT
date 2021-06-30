@@ -43,4 +43,9 @@ public class EmployersController{
 	public Result add(@RequestBody Employer employer,@RequestParam String passwordRepeat){
 		return this.employerService.add(employer, passwordRepeat);
 	}
+	
+	@PostMapping("update")
+	public Result update(@RequestBody Employer employer) {
+		return this.employerService.update(employer);
+	}
 }

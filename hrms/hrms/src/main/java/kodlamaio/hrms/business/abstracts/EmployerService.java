@@ -13,4 +13,6 @@ public interface EmployerService {
 	Result setAdvertisementInactive(int advertisementId);
 	
 	Result add(Employer employer , String passwordRepeat);
+	
+	Result update(Employer employer);
 }
