@@ -19,6 +19,7 @@ import kodlamaio.hrms.core.utilities.results.DataResult;
 import kodlamaio.hrms.core.utilities.results.Result;
 import kodlamaio.hrms.entities.concretes.JobAdvertisement;
 import kodlamaio.hrms.entities.dtos.JobAdvertisementDto;
+import kodlamaio.hrms.entities.dtos.JobAdvertisementFilter;
 
 @RestController
 @RequestMapping("/api/jobAdvertisement/")
@@ -62,6 +63,13 @@ public class JobAdvertisementsContoller {
 	@PostMapping("add")
 	public Result add(@RequestBody JobAdvertisementDto jobAdvertisementDto) {
 		return this.jobAdvertisementService.add(jobAdvertisementDto);
+	}
+	
+	@PostMapping("findbyactivetrueandfiltered")
+	public DataResult<List<JobAdvertisement>> findByActiveTrueAndFiltered(@RequestParam int pageNo ,@RequestParam int pageSize,@RequestBody JobAdvertisementFilter jobAdvertisementFilter){
+		
+		return this.jobAdvertisementService.findByActiveTrueAndFiltered(pageNo, pageSize,jobAdvertisementFilter);
+		
 	}
 	
 	

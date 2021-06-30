@@ -1,6 +1,7 @@
 package kodlamaio.hrms.business.concretes;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -9,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import kodlamaio.hrms.business.abstracts.EmailVerificationCodeService;
 import kodlamaio.hrms.business.abstracts.EmployerService;
+import kodlamaio.hrms.business.abstracts.EmployerUpdateService;
 import kodlamaio.hrms.business.constants.Messages;
 import kodlamaio.hrms.core.utilities.results.DataResult;
 import kodlamaio.hrms.core.utilities.results.ErrorResult;
@@ -16,10 +18,13 @@ import kodlamaio.hrms.core.utilities.results.Result;
 import kodlamaio.hrms.core.utilities.results.SuccessDataResult;
 import kodlamaio.hrms.core.utilities.results.SuccessResult;
 import kodlamaio.hrms.dataAccess.abstracts.EmployerDao;
+import kodlamaio.hrms.dataAccess.abstracts.EmployerUpdateDao;
 import kodlamaio.hrms.dataAccess.abstracts.JobAdvertisementsDao;
 import kodlamaio.hrms.entities.concretes.EmailVerificationCode;
 import kodlamaio.hrms.entities.concretes.Employer;
+import kodlamaio.hrms.entities.concretes.EmployerUpdate;
 import kodlamaio.hrms.entities.concretes.JobAdvertisement;
+import kodlamaio.hrms.entities.dtos.EmployerUpdateDto;
 
 @Service
 public class EmployerManager implements EmployerService{
@@ -27,13 +32,18 @@ public class EmployerManager implements EmployerService{
 	private EmployerDao employerDao;
 	private JobAdvertisementsDao jobAdvertisementDao;
 	private EmailVerificationCodeService emailVerificationService;
+	private EmployerUpdateDao employerUpdateDao;
 	
 	@Autowired
-	public EmployerManager(EmployerDao employerDao , EmailVerificationCodeService emailVerificationService , JobAdvertisementsDao jobAdvertisementDao) {
+	public EmployerManager(EmployerDao employerDao , 
+			EmailVerificationCodeService emailVerificationService , 
+			JobAdvertisementsDao jobAdvertisementDao , 
+			EmployerUpdateDao employerUpdateDao) {
 		super();
 		this.employerDao = employerDao;
 		this.jobAdvertisementDao = jobAdvertisementDao;
 		this.emailVerificationService = emailVerificationService;
+		this.employerUpdateDao = employerUpdateDao;
 		
 	}
 
@@ -62,6 +72,45 @@ public class EmployerManager implements EmployerService{
 		return new ErrorResult(this.isDataRight(employer, passwordRepeat).getMessage());
 		
 		
+		
+	}
+	
+	
+	@Override
+	public Result update(Employer employer) {
+		
+		Employer employerForUpdate = this.employerDao.getOne(employer.getId());
+	
+		employerForUpdate = employer;
+		
+		EmployerUpdateDto employerUpdateRequest = new EmployerUpdateDto();
+		
+		employerUpdateRequest.setEmployerId(employerForUpdate.getId());
+		employerUpdateRequest.setEmail(employerForUpdate.getEmail());
+		employerUpdateRequest.setPassword(employerForUpdate.getPassword());
+		employerUpdateRequest.setCompanyName(employerForUpdate.getCompanyName());
+		employerUpdateRequest.setPhoneNumber(employerForUpdate.getPhoneNumber());
+		employerUpdateRequest.setWebAddress(employerForUpdate.getWebAddress());
+		
+		EmployerUpdate employerUpdate = new EmployerUpdate();
+		
+		employerUpdate.setEmployer(employerForUpdate);
+		employerUpdate.setEmployerUpdateDto(employerUpdateRequest);
+		employerUpdate.setApproved(false);
+		
+		if (!this.isThereAnUpdate(employerForUpdate.getId())) {
+			employerUpdate.setId(this.employerUpdateDao.findByIsApprovedFalseAndEmployer_Id(employerForUpdate.getId()).getId());
+			
+			this.employerUpdateDao.save(employerUpdate);
+			
+			return new SuccessResult("Güncelleme isteği güncellendi.");
+		
+		}
+		
+		this.employerUpdateDao.save(employerUpdate);
+		
+		return new SuccessResult("Güncelleme isteği gönderildi.");
+	
 		
 	}
 	
@@ -134,6 +183,17 @@ public class EmployerManager implements EmployerService{
 		
 		return true;
 	}
+	
+	private boolean isThereAnUpdate(int employerId) {
+		
+		if (Objects.isNull(this.employerUpdateDao.findByIsApprovedFalseAndEmployer_Id(employerId))) {
+			return true;
+		}
+			return false;
+		
+	}
+
+	
 
 	
 }

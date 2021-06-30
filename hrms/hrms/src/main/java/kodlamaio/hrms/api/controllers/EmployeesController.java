@@ -17,6 +17,7 @@ import kodlamaio.hrms.business.abstracts.EmployeeService;
 import kodlamaio.hrms.core.utilities.results.DataResult;
 import kodlamaio.hrms.core.utilities.results.Result;
 import kodlamaio.hrms.entities.concretes.Employee;
+import kodlamaio.hrms.entities.concretes.EmployerUpdate;
 import kodlamaio.hrms.entities.concretes.JobAdvertisement;
 
 @RestController
@@ -42,6 +43,11 @@ public class EmployeesController {
 		return this.employeeService.getJobAdvertisementsInactive();
 	}
 	
+	@GetMapping("getunapprovedupdaterequests")
+	public DataResult<List<EmployerUpdate>> getUnapprovedUpdateRequests(){
+		return this.employeeService.getUnapprovedUpdateRequests();
+	}
+	
 	@PostMapping("confirmjobadvertisement")
 	public Result confirmJobAdvertisement(@RequestParam int jobAdvertisementId) {
 		return this.employeeService.confirmJobAdvertisement(jobAdvertisementId);
@@ -55,6 +61,11 @@ public class EmployeesController {
 	@PostMapping("update")
 	public Result update(@RequestBody Employee employee) {
 		return this.employeeService.update(employee);
+	}
+	
+	@PostMapping("confirmemployeruptade")
+	public Result confirmEmployerUptade(int employerId) {
+		return this.employeeService.confirmEmployerUptade(employerId);
 	}
 	
 	@DeleteMapping("deletejobadvertisement")

@@ -26,6 +26,7 @@ import kodlamaio.hrms.entities.concretes.City;
 import kodlamaio.hrms.entities.concretes.Employer;
 import kodlamaio.hrms.entities.concretes.JobAdvertisement;
 import kodlamaio.hrms.entities.dtos.JobAdvertisementDto;
+import kodlamaio.hrms.entities.dtos.JobAdvertisementFilter;
 
 @Service
 public class JobAdvertisementManager implements JobAdvertisementService{
@@ -105,6 +106,12 @@ public class JobAdvertisementManager implements JobAdvertisementService{
 	@Override
 	public DataResult<List<JobAdvertisement>> getById(int id) {
 		return new SuccessDataResult<List<JobAdvertisement>>(this.jobAdvertisementDao.findById(id));
+	}
+
+	@Override
+	public DataResult<List<JobAdvertisement>> findByActiveTrueAndFiltered(int pageNo , int pageSize,JobAdvertisementFilter jobAdvertisementFilter) {
+		Pageable pageable = PageRequest.of(pageNo-1, pageSize);
+		return new SuccessDataResult<List<JobAdvertisement>>(this.jobAdvertisementDao.findByActiveTrueAndFiltered(jobAdvertisementFilter,pageable));
 	}
 
 	
