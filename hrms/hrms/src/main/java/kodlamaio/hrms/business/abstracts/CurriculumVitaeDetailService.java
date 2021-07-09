@@ -18,7 +18,7 @@ public interface CurriculumVitaeDetailService {
 	
 	DataResult<List<CandidateAbility>> getAllCandidateAbilityByCandidateId(int candidateId);
 	
-	DataResult<List<CandidateImage>> getAllCandidateImageByCandidateId(int candidateId);
+	DataResult<CandidateImage> getCandidateImageByCandidateId(int candidateId);
 	
 	DataResult<List<JobExperience>> getAllJobExperienceByCandidateId(int candidateId);
 

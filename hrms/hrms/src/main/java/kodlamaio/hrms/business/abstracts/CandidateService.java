@@ -14,7 +14,11 @@ public interface CandidateService {
 
 DataResult<List<Candidate>> getAll();
 
+DataResult<Candidate> getById(int candidateId);
+
 Result add(Candidate candidate , String passwordRepeat);
+
+Result update(Candidate candidate);
 	
 	
 }

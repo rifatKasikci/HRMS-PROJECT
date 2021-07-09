@@ -14,7 +14,10 @@ import org.springframework.web.bind.annotation.RestController;
 import kodlamaio.hrms.business.abstracts.JobExperienceService;
 import kodlamaio.hrms.core.utilities.results.DataResult;
 import kodlamaio.hrms.core.utilities.results.Result;
+import kodlamaio.hrms.entities.concretes.CandidateAbility;
 import kodlamaio.hrms.entities.concretes.JobExperience;
+import kodlamaio.hrms.entities.dtos.JobExperienceDto;
+import kodlamaio.hrms.entities.dtos.updateDtos.JobExperienceUpdateDto;
 
 @RestController
 @RequestMapping("/api/jobExperiences/")
@@ -34,9 +37,24 @@ public class JobExperiencesController {
 		return this.jobExperienceService.getAll();
 	}
 	
+	@GetMapping("getbyid")
+	public DataResult<JobExperience> getById(@RequestParam int id){
+		return this.jobExperienceService.getById(id);
+	}
+	
 	@PostMapping("add")
-	public Result add(@RequestBody JobExperience jobExperience) {
-		return this.jobExperienceService.add(jobExperience);
+	public Result add(@RequestBody JobExperienceDto jobExperienceDto) {
+		return this.jobExperienceService.add(jobExperienceDto);
+	}
+	
+	@PostMapping("update")
+	public Result update(@RequestBody JobExperienceUpdateDto jobExperienceUpdateDto) {
+		return this.jobExperienceService.update(jobExperienceUpdateDto);
+	}
+	
+	@PostMapping("delete")
+	public Result delete(@RequestParam int jobExperienceId) {
+		return this.jobExperienceService.delete(jobExperienceId);
 	}
 	
 	@GetMapping("getallbyorderbyendingdatedesc")
