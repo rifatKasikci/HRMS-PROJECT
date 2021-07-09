@@ -27,11 +27,6 @@ import kodlamaio.hrms.entities.dtos.FavoriteDto;
 @RestController
 @RequestMapping("/api/favorites/")
 @CrossOrigin
-
-
-@RestController
-@RequestMapping("/api/favorites/")
-
 public class FavoritesController {
 
 	private FavoriteService favoriteService;
@@ -68,9 +63,6 @@ public class FavoritesController {
 	}
 	
 
-	@PostMapping("add")
-	public Result add(@RequestBody Favorite favorite){
-		return this.favoriteService.add(favorite);
-	}
+
 
 }

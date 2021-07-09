@@ -10,18 +10,12 @@ import kodlamaio.hrms.core.utilities.results.DataResult;
 import kodlamaio.hrms.core.utilities.results.Result;
 import kodlamaio.hrms.core.utilities.results.SuccessDataResult;
 import kodlamaio.hrms.core.utilities.results.SuccessResult;
-
 import kodlamaio.hrms.dataAccess.abstracts.CandidateDao;
 import kodlamaio.hrms.dataAccess.abstracts.FavoriteDao;
 import kodlamaio.hrms.dataAccess.abstracts.JobAdvertisementsDao;
 import kodlamaio.hrms.entities.concretes.Candidate;
 import kodlamaio.hrms.entities.concretes.Favorite;
 import kodlamaio.hrms.entities.concretes.JobAdvertisement;
-import kodlamaio.hrms.entities.dtos.FavoriteDto;
-
-import kodlamaio.hrms.dataAccess.abstracts.FavoriteDao;
-import kodlamaio.hrms.entities.concretes.Favorite;
-
 
 @Service
 public class FavoriteManager implements FavoriteService{
@@ -39,21 +33,14 @@ public class FavoriteManager implements FavoriteService{
 		this.favoriteDao = favoriteDao;
 		this.candidateDao = candidateDao;
 		this.jobAdvertisementDao = jobAdvertisementsDao;
-
-	@Autowired
-	public FavoriteManager(FavoriteDao favoriteDao) {
-		super();
-		this.favoriteDao = favoriteDao;
-
 	}
-
+	
 	@Override
 	public DataResult<List<Favorite>> getAll() {
 		return new SuccessDataResult<List<Favorite>>(this.favoriteDao.findAll());
 	}
 
 	@Override
-
 	public Result add(int candidateId , int jobAdvertisementId) {
 		Candidate candidate = this.candidateDao.getOne(candidateId);
 		JobAdvertisement jobAdvertisement = this.jobAdvertisementDao.getOne(jobAdvertisementId);
@@ -81,11 +68,8 @@ public class FavoriteManager implements FavoriteService{
 	@Override
 	public DataResult<Favorite> getByCandidateIdAndJobAdvertisementId(int candidateId, int jobAdvertisementId) {
 		return new SuccessDataResult<Favorite>(this.favoriteDao.findByCandidate_IdAndJobAdvertisement_Id(candidateId, jobAdvertisementId));
-
-	public Result add(Favorite favorite) {
-		this.favoriteDao.save(favorite);
-		return new SuccessResult();
-
 	}
+
+	
 
 }

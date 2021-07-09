@@ -25,11 +25,6 @@ public interface EmployeeService {
 	
 	Result unapproveEmployerUpdate(int employerId);
 
-	Result confirmJobAdvertisement(int jobAdvertisementId);
-	
-	Result confirmEmployerUptade(int employerId);
-
-
 	Result add(Employee employee);
 	
 	Result delete(int jobAdvertisementId);

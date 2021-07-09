@@ -22,6 +22,5 @@ public interface FavoriteService {
 	
 	Result delete(int candidateId , int jobAdvertisementId);
 
-	Result add(Favorite favorite);
 
 }
