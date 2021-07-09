@@ -16,9 +16,19 @@ public interface EmployeeService {
 	
 	DataResult<List<EmployerUpdate>> getUnapprovedUpdateRequests();
 	
+
+	DataResult<Employee> getById(int employerId);
+	
 	Result confirmJobAdvertisement(int jobAdvertisementId);
 	
 	Result confirmEmployerUptade(int employerId);
+	
+	Result unapproveEmployerUpdate(int employerId);
+
+	Result confirmJobAdvertisement(int jobAdvertisementId);
+	
+	Result confirmEmployerUptade(int employerId);
+
 
 	Result add(Employee employee);
 	

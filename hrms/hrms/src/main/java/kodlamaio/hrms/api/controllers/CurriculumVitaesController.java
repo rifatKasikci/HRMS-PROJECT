@@ -15,6 +15,7 @@ import kodlamaio.hrms.core.utilities.results.DataResult;
 import kodlamaio.hrms.core.utilities.results.Result;
 import kodlamaio.hrms.entities.concretes.CurriculumVitae;
 import kodlamaio.hrms.entities.dtos.CurriculumVitaeDetailDto;
+import kodlamaio.hrms.entities.dtos.CurriculumVitaeUpdateDto;
 
 @RestController
 @RequestMapping("/api/curriculumVitaesController/")

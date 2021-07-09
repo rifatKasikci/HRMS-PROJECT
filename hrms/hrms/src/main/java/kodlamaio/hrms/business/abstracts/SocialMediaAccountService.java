@@ -11,4 +11,6 @@ public interface SocialMediaAccountService {
 	Result add(SocialMediaAccount socialMediaAccount);
 	
 	DataResult<List<SocialMediaAccount>> getAll();
+	
+	DataResult<List<SocialMediaAccount>> getAllByCandidateId(int candidateId);
 }

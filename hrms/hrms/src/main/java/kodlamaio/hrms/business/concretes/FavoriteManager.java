@@ -10,18 +10,41 @@ import kodlamaio.hrms.core.utilities.results.DataResult;
 import kodlamaio.hrms.core.utilities.results.Result;
 import kodlamaio.hrms.core.utilities.results.SuccessDataResult;
 import kodlamaio.hrms.core.utilities.results.SuccessResult;
+
+import kodlamaio.hrms.dataAccess.abstracts.CandidateDao;
+import kodlamaio.hrms.dataAccess.abstracts.FavoriteDao;
+import kodlamaio.hrms.dataAccess.abstracts.JobAdvertisementsDao;
+import kodlamaio.hrms.entities.concretes.Candidate;
+import kodlamaio.hrms.entities.concretes.Favorite;
+import kodlamaio.hrms.entities.concretes.JobAdvertisement;
+import kodlamaio.hrms.entities.dtos.FavoriteDto;
+
 import kodlamaio.hrms.dataAccess.abstracts.FavoriteDao;
 import kodlamaio.hrms.entities.concretes.Favorite;
+
 
 @Service
 public class FavoriteManager implements FavoriteService{
 
 	private FavoriteDao favoriteDao;
+
+	private CandidateDao candidateDao;
+	private JobAdvertisementsDao jobAdvertisementDao;
 	
+	@Autowired
+	public FavoriteManager(FavoriteDao favoriteDao ,
+			CandidateDao candidateDao , 
+			JobAdvertisementsDao jobAdvertisementsDao) {
+		super();
+		this.favoriteDao = favoriteDao;
+		this.candidateDao = candidateDao;
+		this.jobAdvertisementDao = jobAdvertisementsDao;
+
 	@Autowired
 	public FavoriteManager(FavoriteDao favoriteDao) {
 		super();
 		this.favoriteDao = favoriteDao;
+
 	}
 
 	@Override
@@ -30,9 +53,39 @@ public class FavoriteManager implements FavoriteService{
 	}
 
 	@Override
+
+	public Result add(int candidateId , int jobAdvertisementId) {
+		Candidate candidate = this.candidateDao.getOne(candidateId);
+		JobAdvertisement jobAdvertisement = this.jobAdvertisementDao.getOne(jobAdvertisementId);
+		
+		Favorite favorite = new Favorite();
+		favorite.setCandidate(candidate);
+		favorite.setJobAdvertisement(jobAdvertisement);
+		
+		this.favoriteDao.save(favorite);
+		return new SuccessResult("İlan favorilere eklendi");
+	}
+
+	@Override
+	public Result delete(int candidateId , int jobAdvertisementId) {
+		Favorite favorite = this.favoriteDao.findByCandidate_IdAndJobAdvertisement_Id(candidateId, jobAdvertisementId);
+		this.favoriteDao.delete(favorite);
+		return new SuccessResult("İlan favorilerden silindi");
+	}
+
+	@Override
+	public DataResult<List<Favorite>> getAllByCandidateId(int candidateId) {
+		return new SuccessDataResult<List<Favorite>>(this.favoriteDao.findAllByCandidate_Id(candidateId));
+	}
+
+	@Override
+	public DataResult<Favorite> getByCandidateIdAndJobAdvertisementId(int candidateId, int jobAdvertisementId) {
+		return new SuccessDataResult<Favorite>(this.favoriteDao.findByCandidate_IdAndJobAdvertisement_Id(candidateId, jobAdvertisementId));
+
 	public Result add(Favorite favorite) {
 		this.favoriteDao.save(favorite);
 		return new SuccessResult();
+
 	}
 
 }

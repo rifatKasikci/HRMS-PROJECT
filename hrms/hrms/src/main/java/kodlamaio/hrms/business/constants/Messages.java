@@ -29,7 +29,7 @@ public class Messages {
 	public static String jobPositionAdded = "Pozisyon eklendi.";
 	public static String jobPositionsListed = "Pozisyonlar listelendi.";
 	public static String languageCandidateAdded = "Aday dili eklendi.";
-	public static String languageCandiddatesListed = "Adayın dilleri listelendi.";
+	public static String languageCandidatesListed = "Adayın dilleri listelendi.";
 	public static String languageAdded = "Dil eklendi.";
 	public static String languagesListed = "Diller listelendi.";
 	public static String languageStageAdded = "Dil seviyesi eklendi";

@@ -10,6 +10,8 @@ public interface EmployerService {
 
 	DataResult<List<Employer>> getAll();
 	
+	DataResult<Employer> getById(int id);
+	
 	Result setAdvertisementInactive(int advertisementId);
 	
 	Result add(Employer employer , String passwordRepeat);

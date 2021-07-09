@@ -43,6 +43,12 @@ public class EmployeesController {
 		return this.employeeService.getJobAdvertisementsInactive();
 	}
 	
+
+	@GetMapping("getbyid")
+	public DataResult<Employee> getById(@RequestParam int employerId){
+		return this.employeeService.getById(employerId);
+	}
+	
 	@GetMapping("getunapprovedupdaterequests")
 	public DataResult<List<EmployerUpdate>> getUnapprovedUpdateRequests(){
 		return this.employeeService.getUnapprovedUpdateRequests();
@@ -68,6 +74,12 @@ public class EmployeesController {
 		return this.employeeService.confirmEmployerUptade(employerId);
 	}
 	
+	@PostMapping("unapproveemployeruptade")
+	public Result unapproveEmployerUptade(int employerId) {
+		return this.employeeService.unapproveEmployerUpdate(employerId);
+	}
+	
+
 	@DeleteMapping("deletejobadvertisement")
 	public Result delete(int jobAdvertisementId) {
 		return this.employeeService.delete(jobAdvertisementId);

@@ -21,6 +21,7 @@ import kodlamaio.hrms.entities.concretes.JobExperience;
 import kodlamaio.hrms.entities.concretes.LanguageCandidate;
 import kodlamaio.hrms.entities.concretes.SocialMediaAccount;
 import kodlamaio.hrms.entities.dtos.CurriculumVitaeDetailDto;
+import kodlamaio.hrms.entities.dtos.CurriculumVitaeUpdateDto;
 
 @Service
 public class CurriculumVitaeManager implements CurriculumVitaeService {
@@ -53,7 +54,7 @@ public class CurriculumVitaeManager implements CurriculumVitaeService {
 				this.getAllLanguageCandidateByCandidateId(candidateId).getData(),
 				this.getAllCandidateAbilityByCandidateId(candidateId).getData(),
 				this.getAllSocialMediaAccountByCandidateId(candidateId).getData(),
-				this.getAllCandidateImageByCandidateId(candidateId).getData(),
+				this.getCandidateImageByCandidateId(candidateId).getData(),
 				this.curriculumVitaeDao.getByCandidate_Id(candidateId)
 				);
 		
@@ -61,9 +62,15 @@ public class CurriculumVitaeManager implements CurriculumVitaeService {
 	}
 
 	@Override
+
+	public Result update(CurriculumVitaeUpdateDto curriculumVitaeUpdateDto) {
+		CurriculumVitae curriculumVitaeForUpdate = this.curriculumVitaeDao.getByCandidate_Id(curriculumVitaeUpdateDto.getCandidateId());
+		curriculumVitaeForUpdate.setCoverLetter(curriculumVitaeUpdateDto.getCoverLetter());
+
 	public Result update(CurriculumVitae curriculumVitae) {
 		CurriculumVitae curriculumVitaeForUpdate = this.curriculumVitaeDao.getOne(curriculumVitae.getId());
 		curriculumVitaeForUpdate = curriculumVitae;
+
 		this.curriculumVitaeDao.save(curriculumVitaeForUpdate);
 		return new SuccessResult("Cv updated");
 	}
@@ -90,8 +97,8 @@ public class CurriculumVitaeManager implements CurriculumVitaeService {
 	}
 
 	@Override
-	public DataResult<List<CandidateImage>> getAllCandidateImageByCandidateId(int candidateId) {
-		return this.curriculumVitaeDetailService.getAllCandidateImageByCandidateId(candidateId);
+	public DataResult<CandidateImage> getCandidateImageByCandidateId(int candidateId) {
+		return this.curriculumVitaeDetailService.getCandidateImageByCandidateId(candidateId);
 	}
 
 	@Override
