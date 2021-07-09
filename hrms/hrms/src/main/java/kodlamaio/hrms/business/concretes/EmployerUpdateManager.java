@@ -35,6 +35,7 @@ public class EmployerUpdateManager implements EmployerUpdateService{
 		return new SuccessResult();
 	}
 
+
 	@Override
 	public DataResult<List<EmployerUpdate>> getByEmployerId(int employerId) {
 		return new SuccessDataResult<List<EmployerUpdate>>(this.employerUpdateDao.findByEmployer_Id(employerId));
@@ -51,5 +52,6 @@ public class EmployerUpdateManager implements EmployerUpdateService{
 	}
 
 	
+
 
 }

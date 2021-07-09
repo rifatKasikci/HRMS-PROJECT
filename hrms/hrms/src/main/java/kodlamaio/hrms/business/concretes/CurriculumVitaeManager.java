@@ -62,9 +62,15 @@ public class CurriculumVitaeManager implements CurriculumVitaeService {
 	}
 
 	@Override
+
 	public Result update(CurriculumVitaeUpdateDto curriculumVitaeUpdateDto) {
 		CurriculumVitae curriculumVitaeForUpdate = this.curriculumVitaeDao.getByCandidate_Id(curriculumVitaeUpdateDto.getCandidateId());
 		curriculumVitaeForUpdate.setCoverLetter(curriculumVitaeUpdateDto.getCoverLetter());
+
+	public Result update(CurriculumVitae curriculumVitae) {
+		CurriculumVitae curriculumVitaeForUpdate = this.curriculumVitaeDao.getOne(curriculumVitae.getId());
+		curriculumVitaeForUpdate = curriculumVitae;
+
 		this.curriculumVitaeDao.save(curriculumVitaeForUpdate);
 		return new SuccessResult("Cv updated");
 	}

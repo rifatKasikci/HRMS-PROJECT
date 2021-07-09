@@ -41,8 +41,8 @@ public class CurriculumVitaesController {
 	}
 	
 	@PostMapping("update")
-	public Result update(@RequestBody CurriculumVitaeUpdateDto curriculumVitaeUpdateDto) {
-		return this.curriculumVitaeService.update(curriculumVitaeUpdateDto);
+	public Result update(@RequestBody CurriculumVitae curriculumVitae) {
+		return this.curriculumVitaeService.update(curriculumVitae);
 	}
 	
 	
