@@ -15,6 +15,7 @@ import kodlamaio.hrms.core.utilities.results.DataResult;
 import kodlamaio.hrms.core.utilities.results.Result;
 import kodlamaio.hrms.entities.concretes.CurriculumVitae;
 import kodlamaio.hrms.entities.dtos.CurriculumVitaeDetailDto;
+import kodlamaio.hrms.entities.dtos.CurriculumVitaeUpdateDto;
 
 @RestController
 @RequestMapping("/api/curriculumVitaesController/")
@@ -40,8 +41,8 @@ public class CurriculumVitaesController {
 	}
 	
 	@PostMapping("update")
-	public Result update(@RequestBody CurriculumVitae curriculumVitae) {
-		return this.curriculumVitaeService.update(curriculumVitae);
+	public Result update(@RequestBody CurriculumVitaeUpdateDto curriculumVitaeUpdateDto) {
+		return this.curriculumVitaeService.update(curriculumVitaeUpdateDto);
 	}
 	
 	

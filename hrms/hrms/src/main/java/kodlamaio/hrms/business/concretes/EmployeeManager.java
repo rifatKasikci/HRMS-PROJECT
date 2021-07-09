@@ -109,6 +109,18 @@ public class EmployeeManager implements EmployeeService{
 		return new SuccessDataResult<List<EmployerUpdate>>(this.employerUpdateDao.findByIsApprovedFalse());
 	}
 
+	@Override
+	public DataResult<Employee> getById(int employerId) {
+		return new SuccessDataResult<Employee>(this.employeeDao.findById(employerId).get());
+	}
+
+	@Override
+	public Result unapproveEmployerUpdate(int employerId) {
+		EmployerUpdate employerUpdate = this.employerUpdateDao.findByIsApprovedFalseAndEmployer_Id(employerId);
+		this.employerUpdateDao.delete(employerUpdate);
+		return new SuccessResult("Güncelleme reddedildi.");
+	}
+
 	
 
 }

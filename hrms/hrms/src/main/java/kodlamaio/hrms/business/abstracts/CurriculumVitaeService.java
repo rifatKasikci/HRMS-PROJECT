@@ -12,12 +12,13 @@ import kodlamaio.hrms.entities.concretes.JobExperience;
 import kodlamaio.hrms.entities.concretes.LanguageCandidate;
 import kodlamaio.hrms.entities.concretes.SocialMediaAccount;
 import kodlamaio.hrms.entities.dtos.CurriculumVitaeDetailDto;
+import kodlamaio.hrms.entities.dtos.CurriculumVitaeUpdateDto;
 
 public interface CurriculumVitaeService {
 
 	Result add(CurriculumVitae curriculumVitae);
 	
-	Result update(CurriculumVitae curriculumVitae);
+	Result update(CurriculumVitaeUpdateDto curriculumVitaeUpdateDto);
 	
 	DataResult<CurriculumVitaeDetailDto> getCurriculumVitaeByCandidateId(int candidateId);
 	
@@ -29,7 +30,7 @@ public interface CurriculumVitaeService {
 	
 	DataResult<List<JobExperience>> getAllJobExperienceByCandidateId(int candidateId);
 	
-	DataResult<List<CandidateImage>> getAllCandidateImageByCandidateId(int candidateId);
+	DataResult<CandidateImage> getCandidateImageByCandidateId(int candidateId);
 
 	DataResult<List<SocialMediaAccount>> getAllSocialMediaAccountByCandidateId(int candidateId);
 	

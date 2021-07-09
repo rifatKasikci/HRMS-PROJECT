@@ -34,7 +34,7 @@ public class CurriculumVitaeDetailDto {
 	
 	private List<SocialMediaAccount> socialMediaAccounts;
 	
-	private List<CandidateImage> candidateImages;
+	private CandidateImage candidateImages;
 	
 	private CurriculumVitae curriculumVitae;
 	

@@ -35,4 +35,21 @@ public class EmployerUpdateManager implements EmployerUpdateService{
 		return new SuccessResult();
 	}
 
+	@Override
+	public DataResult<List<EmployerUpdate>> getByEmployerId(int employerId) {
+		return new SuccessDataResult<List<EmployerUpdate>>(this.employerUpdateDao.findByEmployer_Id(employerId));
+	}
+
+	@Override
+	public DataResult<EmployerUpdate> getUnapprovedUpdateByEmployerId(int employerId) {
+		return new SuccessDataResult<EmployerUpdate>(this.employerUpdateDao.findByIsApprovedFalseAndEmployer_Id(employerId));
+	}
+
+	@Override
+	public DataResult<EmployerUpdate> getById(int employerUpdateId) {
+		 return new SuccessDataResult<EmployerUpdate>(this.employerUpdateDao.findById(employerUpdateId).get());
+	}
+
+	
+
 }
