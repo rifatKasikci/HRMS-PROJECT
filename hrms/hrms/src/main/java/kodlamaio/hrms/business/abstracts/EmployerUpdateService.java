@@ -10,14 +10,5 @@ public interface EmployerUpdateService {
 
 	DataResult<List<EmployerUpdate>> getAll();
 	
-
-	DataResult<List<EmployerUpdate>> getByEmployerId(int employerId);
-	
-	DataResult<EmployerUpdate> getUnapprovedUpdateByEmployerId(int employerId);
-	
-	DataResult<EmployerUpdate> getById(int employerUpdateId);
-	
-
-
 	Result add(EmployerUpdate employerUpdate);
 }

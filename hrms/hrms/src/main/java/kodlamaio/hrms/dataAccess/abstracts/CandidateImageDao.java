@@ -8,7 +8,5 @@ import kodlamaio.hrms.entities.concretes.CandidateImage;
 
 public interface CandidateImageDao extends JpaRepository<CandidateImage, Integer>{
 
-	CandidateImage getByCandidate_Id(int candidateId);
-	
-	
+	List<CandidateImage> getByCandidate_Id(int candidateId);
 }

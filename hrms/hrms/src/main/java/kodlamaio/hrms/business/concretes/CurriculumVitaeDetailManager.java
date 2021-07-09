@@ -63,8 +63,8 @@ public class CurriculumVitaeDetailManager implements CurriculumVitaeDetailServic
 	}
 
 	@Override
-	public DataResult<CandidateImage> getCandidateImageByCandidateId(int candidateId) {
-		return new SuccessDataResult<CandidateImage>(this.candidateImageDao.getByCandidate_Id(candidateId));
+	public DataResult<List<CandidateImage>> getAllCandidateImageByCandidateId(int candidateId) {
+		return new SuccessDataResult<List<CandidateImage>>(this.candidateImageDao.getByCandidate_Id(candidateId));
 	}
 
 	@Override

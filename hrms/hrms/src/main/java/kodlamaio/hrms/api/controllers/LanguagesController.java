@@ -28,7 +28,7 @@ public class LanguagesController {
 		this.languageService = languageService;
 	}
 	
-	@GetMapping("getall")
+	@GetMapping("get")
 	public DataResult<List<Language>> getAll() {
 		return this.languageService.getAll();
 	}

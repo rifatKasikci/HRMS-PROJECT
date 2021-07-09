@@ -33,11 +33,6 @@ public class SocialMediaAccountsController {
 		return this.socialMediaAccountService.getAll();
 	}
 	
-	@GetMapping("getallbycandidateid")
-	public DataResult<List<SocialMediaAccount>> getAllByCandidateId(int candidateId){
-		return this.socialMediaAccountService.getAllByCandidateId(candidateId);
-	}
-	
 	@PostMapping("add")
 	public Result add(@RequestBody SocialMediaAccount socialMediaAccount) {
 		return this.socialMediaAccountService.add(socialMediaAccount);

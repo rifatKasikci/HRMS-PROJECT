@@ -34,11 +34,6 @@ public class EmployersController{
 		return this.employerService.getAll();
 	}
 	
-	@GetMapping("getbyid")
-	public DataResult<Employer> getById(@RequestParam int id){
-		return this.employerService.getById(id);
-	}
-	
 	@PostMapping("setadvertisementinactive")
 	public Result setAdvertisementInactive(@RequestParam int advertisementId) {
 		return this.employerService.setAdvertisementInactive(advertisementId);

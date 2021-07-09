@@ -35,11 +35,6 @@ public class CandidateImagesController {
 		return this.candidateImageService.getAll();
 	}
 	
-	@GetMapping("getallbycandidateid")
-	public DataResult<CandidateImage> getAllByCandidateId(int candidateId){
-		return this.candidateImageService.getByCandidateId(candidateId);
-	}
-	
 	@PostMapping("add")
 	public Result add(@RequestParam int candidateId ,@RequestParam MultipartFile file){
 		CandidateImage candidateImage = new CandidateImage();

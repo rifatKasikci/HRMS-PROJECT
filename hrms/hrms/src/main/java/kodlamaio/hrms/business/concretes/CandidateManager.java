@@ -134,22 +134,5 @@ public class CandidateManager implements CandidateService{
 		
 		return true;
 	}
-
-
-
-	@Override
-	public Result update(Candidate candidate) {
-		Candidate referenceCandidate = this.candidateDao.getOne(candidate.getId());
-		referenceCandidate = candidate;
-		this.candidateDao.save(referenceCandidate);
-		return new SuccessResult("Aday bilgileri güncellendi.");
-	}
-
-
-
-	@Override
-	public DataResult<Candidate> getById(int candidateId) {
-		return new SuccessDataResult<Candidate>(this.candidateDao.findById(candidateId).get());
-	}
 }
 

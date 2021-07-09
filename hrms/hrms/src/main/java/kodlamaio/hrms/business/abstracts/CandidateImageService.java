@@ -13,6 +13,4 @@ public interface CandidateImageService {
 	Result add(CandidateImage candidateImage , MultipartFile file);
 	
 	DataResult<List<CandidateImage>> getAll();
-	
-	DataResult<CandidateImage> getByCandidateId(int candidateId);
 }

@@ -39,13 +39,6 @@ public class CandidateImageManager implements CandidateImageService{
 		Map<String , String> result = (Map<String , String>) this.imageUploadService.save(file).getData();
 		String photoUrl = result.get("url");
 		
-		if (this.isHavePhoto(candidateImage.getCandidate().getId())) {
-			candidateImage = this.candidateImageDao.getByCandidate_Id(candidateImage.getCandidate().getId());
-			candidateImage.setImageUrl(photoUrl);
-			this.candidateImageDao.save(candidateImage);
-			return new SuccessResult("Resim bilgisi güncellendi.");
-		}
-		
 		candidateImage.setImageUrl(photoUrl);
 		
 		this.candidateImageDao.save(candidateImage);
@@ -56,20 +49,6 @@ public class CandidateImageManager implements CandidateImageService{
 	@Override
 	public DataResult<List<CandidateImage>> getAll() {
 	return new SuccessDataResult<List<CandidateImage>>(this.candidateImageDao.findAll() , Messages.imagesListed);
-	}
-
-	@Override
-	public DataResult<CandidateImage> getByCandidateId(int candidateId) {
-		return new SuccessDataResult<CandidateImage>(this.candidateImageDao.getByCandidate_Id(candidateId));
-	}
-	
-	private boolean isHavePhoto(int candidateId) {
-		var photos = this.candidateImageDao.getByCandidate_Id(candidateId);
-		
-		if (true) {
-			return true;
-		}
-		return false;
 	}
 
 	

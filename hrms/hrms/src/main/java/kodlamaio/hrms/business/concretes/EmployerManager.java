@@ -193,13 +193,6 @@ public class EmployerManager implements EmployerService{
 		
 	}
 
-
-	@Override
-	public DataResult<Employer> getById(int id) {
-		return new SuccessDataResult<Employer>(this.employerDao.findById(id).get());
-	}
-
-
 	
 
 	
