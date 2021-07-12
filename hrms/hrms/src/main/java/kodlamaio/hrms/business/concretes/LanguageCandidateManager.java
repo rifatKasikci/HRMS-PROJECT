@@ -16,7 +16,6 @@ import kodlamaio.hrms.dataAccess.abstracts.LanguageCandidateDao;
 import kodlamaio.hrms.dataAccess.abstracts.LanguageDao;
 import kodlamaio.hrms.dataAccess.abstracts.LanguageStageDao;
 import kodlamaio.hrms.entities.concretes.Candidate;
-import kodlamaio.hrms.entities.concretes.JobExperience;
 import kodlamaio.hrms.entities.concretes.Language;
 import kodlamaio.hrms.entities.concretes.LanguageCandidate;
 import kodlamaio.hrms.entities.concretes.LanguageStage;

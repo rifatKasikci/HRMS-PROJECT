@@ -10,7 +10,6 @@ import org.springframework.stereotype.Service;
 
 import kodlamaio.hrms.business.abstracts.EmailVerificationCodeService;
 import kodlamaio.hrms.business.abstracts.EmployerService;
-import kodlamaio.hrms.business.abstracts.EmployerUpdateService;
 import kodlamaio.hrms.business.constants.Messages;
 import kodlamaio.hrms.core.utilities.results.DataResult;
 import kodlamaio.hrms.core.utilities.results.ErrorResult;
