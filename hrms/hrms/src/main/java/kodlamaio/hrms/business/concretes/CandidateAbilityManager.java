@@ -17,7 +17,6 @@ import kodlamaio.hrms.dataAccess.abstracts.CandidateDao;
 import kodlamaio.hrms.entities.concretes.Ability;
 import kodlamaio.hrms.entities.concretes.Candidate;
 import kodlamaio.hrms.entities.concretes.CandidateAbility;
-import kodlamaio.hrms.entities.concretes.JobExperience;
 import kodlamaio.hrms.entities.dtos.CandidateAbilityDto;
 import kodlamaio.hrms.entities.dtos.updateDtos.CandidateAbilityUpdateDto;
 

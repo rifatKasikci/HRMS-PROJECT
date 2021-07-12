@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RestController;
 import kodlamaio.hrms.business.abstracts.CandidateSchoolWithDepartmentService;
 import kodlamaio.hrms.core.utilities.results.DataResult;
 import kodlamaio.hrms.core.utilities.results.Result;
-import kodlamaio.hrms.core.utilities.results.SuccessDataResult;
 import kodlamaio.hrms.entities.concretes.CandidateSchoolWithDepartment;
 import kodlamaio.hrms.entities.dtos.CandidateSchoolWithDepartmentDto;
 import kodlamaio.hrms.entities.dtos.updateDtos.CandidateSchoolWithDepartmentUpdateDto;

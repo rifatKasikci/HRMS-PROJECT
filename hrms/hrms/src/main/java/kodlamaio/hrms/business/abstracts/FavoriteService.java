@@ -6,7 +6,6 @@ import kodlamaio.hrms.core.utilities.results.DataResult;
 import kodlamaio.hrms.core.utilities.results.Result;
 import kodlamaio.hrms.entities.concretes.Favorite;
 
-import kodlamaio.hrms.entities.dtos.FavoriteDto;
 
 
 public interface FavoriteService {

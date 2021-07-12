@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RestController;
 import kodlamaio.hrms.business.abstracts.LanguageCandidateService;
 import kodlamaio.hrms.core.utilities.results.DataResult;
 import kodlamaio.hrms.core.utilities.results.Result;
-import kodlamaio.hrms.entities.concretes.CandidateAbility;
 import kodlamaio.hrms.entities.concretes.LanguageCandidate;
 import kodlamaio.hrms.entities.dtos.LanguageCandidateDto;
 import kodlamaio.hrms.entities.dtos.updateDtos.LanguageCandidateUpdateDto;
